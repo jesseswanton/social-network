@@ -69,20 +69,20 @@ router.delete('/:userId', async (req, res) => {
 
 // Add a friend to the user’s friend list
 router.put('/:userId/friends/:friendId', async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId);
-    const friend = await User.findById(req.params.friendId);
-
-    if (!user || !friend) return res.status(404).json({ message: 'User or friend not found' });
-
-    user.friends.push(friend);
-    await user.save();
-
-    res.json(user);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+    try {
+      const user = await User.findById(req.params.userId);
+      const friend = await User.findById(req.params.friendId);
+  
+      if (!user || !friend) return res.status(404).json({ message: 'User or friend not found' });
+  
+      user.friends.push(friend._id);
+      await user.save();
+  
+      res.json(user);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  });
 
 //Delete a friend from the user’s friend list
 router.delete('/:userId/friends/:friendId', async (req, res) => {
@@ -92,12 +92,14 @@ router.delete('/:userId/friends/:friendId', async (req, res) => {
         return res.status(404).json({ message: 'User not found' });
       }
   
-      const friendIndex = user.friends.indexOf(req.params.friendId);
-      if (friendIndex === -1) {
+      const friendId = req.params.friendId;
+  
+      if (!user.friends.includes(friendId)) {
         return res.status(404).json({ message: 'Friend not found in user\'s friend list' });
       }
   
-      user.friends.splice(friendIndex, 1);
+      user.friends.pull(friendId);
+  
       await user.save();
   
       res.json({ message: 'Friend removed successfully', user });

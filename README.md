@@ -38,6 +38,9 @@ You can test the following routes with [Insomnia](https://insomnia.rest/):
 Example: http://localhost:3000/api/users
 3000 is the port where your server is running.
 
+**[Walkthrough video](https://drive.google.com/file/d/1htGrLKGh-LXch3HX2rFbj36_H6EIfhv1/view?usp=sharing)**
+
+
 - **GET `/api/users`**: Retrieve all users.
 - **GET `/api/users/userId`**: Retrieve a specific user by ID.
 - **POST `/api/users`**: Create a new user.
@@ -46,7 +49,7 @@ Example: http://localhost:3000/api/users
 
 ### Friendship Routes
 
-- **POST `/api/users/userId/friends/friendId`**: Add a friend to the user's friend list.
+- **PUT `/api/users/userId/friends/friendId`**: Add a friend to the user's friend list.
 - **DELETE `/api/users/userId/friends/friendId`**: Remove a friend from the user's friend list.
 
 ### Thoughts Routes
@@ -61,6 +64,7 @@ Example: http://localhost:3000/api/users
 
 - **POST `/api/thoughts/thoughtId/reactions`**: Add a reaction to a specific thought.
 - **DELETE `/api/thoughts/thoughtId/reactions/reactionId`**: Delete a reaction from a specific thought.
+
 
 ## Seed the Database
 
