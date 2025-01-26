@@ -46,7 +46,7 @@ Example: http://localhost:3000/api/users
 
 ### Friendship Routes
 
-- **POST `/api/users/userId/friends/friendId`**: Add a friend to the user's friend list.
+- **PUT `/api/users/userId/friends/friendId`**: Add a friend to the user's friend list.
 - **DELETE `/api/users/userId/friends/friendId`**: Remove a friend from the user's friend list.
 
 ### Thoughts Routes
